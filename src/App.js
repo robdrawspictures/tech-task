@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import axios from 'axios';
 import UserGrid from './components/userGrid';
+import UserDetail from './components/userDetail';
 import './App.css';
 
 function App() {
@@ -20,26 +22,45 @@ function App() {
       fetchUsers();
     }, []);
 
-  console.log('---DATA---')
-  console.log(data);
+    let userHistory = [];
 
-  let sortedData = data.sort(function (a, b) {
-		return a.name.first.localeCompare(b.name.first);
-  });
+		const updateHistory = (data) => {
+			userHistory.push(data);
+      console.log(userHistory);
+		};
 
-  console.log(sortedData);
+    let sortedData = data && data.sort(function (a, b) {
+      return a.name.first.localeCompare(b.name.first);
+    });
+
+    console.log("---DATA---");
+    console.log(sortedData);
 
 
-  if(!data){
-    return (
-      <h1>Now Loading...</h1>
-    )
-  }
+    if(!data){
+      return (
+      <>
+        <div className="loading-container">
+          <h1>Now Loading...</h1>
+          <div className="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </>
+    );
+    }
 
   return (
-    <div className="App">
-      <UserGrid users={sortedData}/>
-    </div>
+			<Routes>
+				<Route path="/" element={<UserGrid users={sortedData} userHistory={userHistory}/>} />
+				<Route
+					path="/users/:id"
+					element={<UserDetail users={sortedData} updateHistory={updateHistory}/>}
+				/>
+			</Routes>
   );
 }
 
