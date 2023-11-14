@@ -15,7 +15,7 @@ function UserHistory({history, users}){
 			<div className="user-history-item" key={index}>
 				<img
 					src={users[user].picture.thumbnail}
-					alt={users[user].name.first}
+					alt={`${users[user].name.first}-history`}
 				/>
 				<FormatName name={users[user].name} displayTitle={false} />
 			</div>

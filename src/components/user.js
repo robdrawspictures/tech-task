@@ -11,16 +11,27 @@ const User = ({ user, index }) => {
 
 	return (
 		<>
-			<Link to={userURL} style={{ textDecoration: "none" }}>
-				<div className="user-card">
-					<img src={user.picture.medium} alt={user.name.first} />
-					<p>NINO: {user.id.value}</p>
-					<FormatName name={user.name} displayTitle={false} />
-					<p>{user.email}</p>
-					<p>{user.phone}</p>
-					<FormatAddress address={user.location} />
+			<div className="user-card">
+				<div className="user-card-info">
+					<div className="user-card-avatar-name">
+						<h2>
+							<FormatName name={user.name} displayTitle={false} />
+						</h2>
+						<img src={user.picture.medium} alt={user.name.first} />
+					</div>
+					<div className="user-card-details">
+						<b>
+							<p>NINO: {user.id.value}</p>
+							<p>{user.email}</p>
+							<p>{user.phone}</p>
+							<FormatAddress user={user} isDetail={false} />
+						</b>
+					</div>
 				</div>
-			</Link>
+				<Link to={userURL} className="button">
+					VIEW USER
+				</Link>
+			</div>
 		</>
 	);
 };

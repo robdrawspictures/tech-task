@@ -26,7 +26,7 @@ function App() {
 
 		const updateHistory = (data) => {
 			userHistory.push(data);
-      console.log(userHistory);
+      // console.log(userHistory);
 		};
 
     let sortedData = data && data.sort(function (a, b) {
@@ -54,13 +54,34 @@ function App() {
     }
 
   return (
+		<>
+			<header>
+				<h1>User Directory</h1>
+			</header>
 			<Routes>
-				<Route path="/" element={<UserGrid users={sortedData} userHistory={userHistory}/>} />
+				<Route
+					path="/"
+					element={
+						<UserGrid
+							users={sortedData}
+							userHistory={userHistory}
+						/>
+					}
+				/>
 				<Route
 					path="/users/:id"
-					element={<UserDetail users={sortedData} updateHistory={updateHistory}/>}
+					element={
+						<UserDetail
+							users={sortedData}
+							updateHistory={updateHistory}
+						/>
+					}
 				/>
 			</Routes>
+			<footer>
+				<p>Copyright Rob 2023, All Rights Reserved</p>
+			</footer>
+		</>
   );
 }
 

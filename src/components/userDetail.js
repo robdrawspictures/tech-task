@@ -37,25 +37,53 @@ function UserDetail({ users, updateHistory }){
 						displayTitle={true}
 						isHeader={true}
 					/>
-					<img src={user.picture.large} alt={user.name.first} />
+					<img
+						src={user.picture.large}
+						alt={`${user.name.first}-full-size`}
+					/>
 				</div>
-				<div className="user-detail-info">
-					<div className="user-detail-info-left">
-						<p>NINO: {user.id.value}</p>
-						<p>e-mail: {user.email}</p>
-						<p>tel: {user.phone}</p>
-						<p>mobile: {user.cell}</p>
-						<FormatDate date={user.dob} type={'birth'}/>
-						<FormatDate date={user.registered} type={'register'}/>
+				<div className="user-detail-info-container">
+					<div>
+						<h2>User Details</h2>
 					</div>
-					<div className="user-detail-info-left">
-                        <h3>Address</h3>
-						<FormatAddress address={user.location} />
-                        <h3>ALAN PLEASE ADD DETAILS</h3>
+					<div className="user-detail-info">
+						<div className="user-detail-info-left">
+							<h3>General Info</h3>
+							<p>
+								<b>NINO:</b> {user.id.value}
+							</p>
+							<p>
+								<b>E-Mail:</b> {user.email}
+							</p>
+							<p>
+								<b>tel:</b> {user.phone}
+							</p>
+							<p>
+								<b>mobile:</b> {user.cell}
+							</p>
+							<FormatDate date={user.dob} type={"birth"} />
+							<FormatDate
+								date={user.registered}
+								type={"register"}
+							/>
+						</div>
+						<div className="user-detail-info-right">
+							<h3>Location Info</h3>
+							<FormatAddress
+								user={user}
+								isDetail={true}
+							/>
+							<p>
+								{user.location.timezone.offset}, (
+								{user.location.timezone.description})
+							</p>
+						</div>
 					</div>
 				</div>
+				<Link to="/" className="button">
+					Return to User Directory
+				</Link>
 			</div>
-            <Link to="/">Back</Link>
 		</>
 	);
 }

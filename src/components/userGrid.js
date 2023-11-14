@@ -18,15 +18,17 @@ function UserGrid({users, userHistory}){
 
     return (
 		<>
-			<div className="user-display">
-				<h1>User Directory</h1>
-				<ul className="user-list">{UserList}</ul>
+			<div className="display-container">
+				<div className="user-display">
+					<ul className="user-list">{UserList}</ul>
+				</div>
+				{userHistory.length > 0 && (
+					<div className="recently-viewed">
+						<h3>Recently Viewed</h3>
+						<UserHistory history={recentlyViewed} users={users} />
+					</div>
+				)}
 			</div>
-            {userHistory.length > 0 && 
-            <div className="recently-viewed">
-                <h3>Recently Viewed</h3>
-                <UserHistory history={recentlyViewed} users={users}/>
-            </div>}
 		</>
 	);
 }
