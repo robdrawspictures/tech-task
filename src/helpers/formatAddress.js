@@ -4,9 +4,6 @@ function FormatAddress({user, isDetail}){
 
     const address = user?.location
 
-    // console.log('---ADDRESS---')
-    // console.log(address);
-
     return (
 		<div>
 			<i>

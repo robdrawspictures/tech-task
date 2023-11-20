@@ -4,8 +4,6 @@ import FormatAddress from "../helpers/formatAddress";
 import { Link } from "react-router-dom";
 
 const User = ({ user, index }) => {
-    // console.log('---USER---');
-    // console.log(user);
 
 	const userURL = user && "/users/" + index;
 
@@ -14,9 +12,7 @@ const User = ({ user, index }) => {
 			<div className="user-card">
 				<div className="user-card-info">
 					<div className="user-card-avatar-name">
-						<h2>
-							<FormatName name={user.name} displayTitle={false} />
-						</h2>
+							<FormatName name={user.name} tag={'h2'}/>
 						<img src={user.picture.medium} alt={user.name.first} />
 					</div>
 					<div className="user-card-details">

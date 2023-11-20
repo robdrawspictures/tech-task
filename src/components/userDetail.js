@@ -6,17 +6,7 @@ import FormatDate from "../helpers/formatDate";
 
 function UserDetail({ users, updateHistory }){
 
-        console.log("---USER DETAIL---");
-		console.log(users);
-
     const params = useParams();
-    console.log(params);
-
-    // const findUserByID = (id) => {
-    //     return users.find((user) => {
-    //         return user.id === parseInt(id);
-    //     });
-    // };
 
     updateHistory(params.id);
 
@@ -26,8 +16,6 @@ function UserDetail({ users, updateHistory }){
         return <p>Loading...</p>;
     }
 
-
-
     return (
 		<>
 			<div className="user-detail-container">
@@ -35,7 +23,7 @@ function UserDetail({ users, updateHistory }){
 					<FormatName
 						name={user.name}
 						displayTitle={true}
-						isHeader={true}
+						tag={'h1'}
 					/>
 					<img
 						src={user.picture.large}
@@ -49,6 +37,9 @@ function UserDetail({ users, updateHistory }){
 					<div className="user-detail-info">
 						<div className="user-detail-info-left">
 							<h3>General Info</h3>
+							<p>
+								<b>Gender:</b> {user.gender}
+							</p>
 							<p>
 								<b>NINO:</b> {user.id.value}
 							</p>

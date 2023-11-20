@@ -3,8 +3,6 @@ import User from "./user";
 import UserHistory from "./userHistory";
 
 function UserGrid({users, userHistory}){
-    // console.log('-----USERS-----');
-    // console.log(users.users);
 
     let recentlyViewed = userHistory;
 
@@ -24,7 +22,7 @@ function UserGrid({users, userHistory}){
 				</div>
 				{userHistory.length > 0 && (
 					<div className="recently-viewed">
-						<h3>Recently Viewed</h3>
+						<h2>Recently Viewed</h2>
 						<UserHistory history={recentlyViewed} users={users} />
 					</div>
 				)}

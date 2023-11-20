@@ -1,11 +1,8 @@
 import React from "react";
 
-function FormatName({name, displayTitle, isHeader}) {
+function FormatName({name, displayTitle, tag}) {
 
-	// console.log('===NAME===');
-	// console.log(name.name);
-
-    const DynamicTag = isHeader ? 'h1' : 'p';
+    const DynamicTag = tag ? tag : 'p';
 
     return (
             <DynamicTag>

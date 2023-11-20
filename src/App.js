@@ -26,16 +26,11 @@ function App() {
 
 		const updateHistory = (data) => {
 			userHistory.push(data);
-      // console.log(userHistory);
 		};
 
     let sortedData = data && data.sort(function (a, b) {
       return a.name.first.localeCompare(b.name.first);
     });
-
-    console.log("---DATA---");
-    console.log(sortedData);
-
 
     if(!data){
       return (
