@@ -12,7 +12,7 @@ const User = ({ user, index }) => {
 			<div className="user-card">
 				<div className="user-card-info">
 					<div className="user-card-avatar-name">
-							<FormatName name={user.name} tag={'h2'}/>
+						<FormatName name={user.name} tag={"h2"} />
 						<img src={user.picture.medium} alt={user.name.first} />
 					</div>
 					<div className="user-card-details">
@@ -20,12 +20,17 @@ const User = ({ user, index }) => {
 							<p>NINO: {user.id.value}</p>
 							<p>{user.email}</p>
 							<p>{user.phone}</p>
-							<FormatAddress user={user} isDetail={false} />
+							<details className="ds_details">
+								<summary className="ds_details__summary">
+									View Address
+								</summary>
+								<FormatAddress user={user} isDetail={false} />
+							</details>
 						</b>
 					</div>
 				</div>
-				<Link to={userURL} className="button">
-					VIEW USER
+				<Link to={userURL} className="ds_button">
+					View Details
 				</Link>
 			</div>
 		</>

@@ -5,7 +5,7 @@ function FormatAddress({user, isDetail}){
     const address = user?.location
 
     return (
-		<div>
+		<div className="ds_details__text">
 			<i>
 				<p>
 					{address.street.number} {address.street.name}

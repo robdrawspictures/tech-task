@@ -3,11 +3,15 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import axios from 'axios';
 import UserGrid from './components/userGrid';
 import UserDetail from './components/userDetail';
-import './App.css';
+import Header from './components/header';
+// import './App.css';
+import '../node_modules/@scottish-government/design-system/dist/css/design-system.css'
+import UserHistory from './components/userHistory';
 
 function App() {
   const [data, setData] = useState();
 
+  /* On load, triggers API call to fetch data for app */
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -24,6 +28,7 @@ function App() {
 
     let userHistory = [];
 
+    /* Handles updating of userHistory array (line 26), triggered in */
 		const updateHistory = (data) => {
 			userHistory.push(data);
 		};
@@ -50,9 +55,7 @@ function App() {
 
   return (
 		<>
-			<header>
-				<h1>User Directory</h1>
-			</header>
+			<Header />
 			<Routes>
 				<Route
 					path="/"
@@ -67,6 +70,15 @@ function App() {
 					path="/users/:id"
 					element={
 						<UserDetail
+							users={sortedData}
+							updateHistory={updateHistory}
+						/>
+					}
+				/>
+				<Route
+					path="/user-history"
+					element={
+						<UserHistory
 							users={sortedData}
 							updateHistory={updateHistory}
 						/>
