@@ -1,21 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import headerIMG from "../assets/scottish-government.svg";
+import { useContext } from "react";
+import LastViewed from "../helpers/userContext";
 
 function Header(){
-    return (
-		// <header className="ds_page-header">
-		// 	<span className="ds_page-header__label  ds_content-label">
-		// 		Tech Task
-		// 	</span>
-		// 	<h1 className="ds_page-header__title">User Directory</h1>
-		// 	<dl className="ds_page-header__metadata  ds_metadata">
-		// 		<div className="ds_metadata__item">
-		// 			<dt className="ds_metadata__key">Last updated</dt>
-		// 			<dd className="ds_metadata__value">21 November 2023</dd>
-		// 		</div>
-		// 	</dl>
-		// </header>
 
+    let lastViewed = useContext(LastViewed);
+
+    let lastURL = '/users/' + lastViewed;
+
+    return (
 		<header
 			className="ds_site-header  ds_site-header--gradient"
 			role="banner"
@@ -29,7 +24,7 @@ function Header(){
 						>
 							<img
 								className="ds_site-branding__logo-image"
-								src="/binaries/content/gallery/designsystem/examples/scottish-government-svg"
+								src={headerIMG}
 								alt="Scottish Government"
 							/>
 						</a>
@@ -92,6 +87,16 @@ function Header(){
 									User History
 								</Link>
 							</li>
+                            { lastViewed &&
+							<li className="ds_site-navigation__item">
+								<Link
+									to={lastURL}
+									className="ds_site-navigation__link"
+								>
+									Last User Viewed
+								</Link>
+							</li>
+                            }
 						</ul>
 					</nav>
 
@@ -159,6 +164,16 @@ function Header(){
 									User History
 								</Link>
 							</li>
+                            { lastViewed &&
+							<li className="ds_site-navigation__item">
+								<Link
+									to={lastURL}
+									className="ds_site-navigation__link"
+								>
+									Last User Viewed
+								</Link>
+							</li>
+                            }
 						</ul>
 					</nav>
 				</div>

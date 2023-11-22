@@ -4,11 +4,19 @@ import FormatName from "../helpers/formatName";
 import FormatAddress from "../helpers/formatAddress";
 import FormatDate from "../helpers/formatDate";
 
-function UserDetail({ users, updateHistory }){
+function UserDetail({ users, updateHistory, setLastViewed }){
 
     const params = useParams();
+	const currentUser = {
+		'userId': params.id,
+		'lastAccess': new Date().toLocaleString(),
+	}
 
-    updateHistory(params.id);
+	// console.log(params.id)
+	// console.log(typeof(params.id))
+
+	setLastViewed(params.id);
+    updateHistory(currentUser);
 
     let user = users[params.id]
 
@@ -18,60 +26,62 @@ function UserDetail({ users, updateHistory }){
 
     return (
 		<>
-			<div className="user-detail-container">
-				<div className="user-name-and-avatar">
-					<FormatName
-						name={user.name}
-						displayTitle={true}
-						tag={'h1'}
-					/>
-					<img
-						src={user.picture.large}
-						alt={`${user.name.first}-full-size`}
-					/>
-				</div>
-				<div className="user-detail-info-container">
-					<div>
-						<h2>User Details</h2>
-					</div>
-					<div className="user-detail-info">
-						<div className="user-detail-info-left">
-							<h3>General Info</h3>
-							<p>
-								<b>Gender:</b> {user.gender}
-							</p>
-							<p>
-								<b>NINO:</b> {user.id.value}
-							</p>
-							<p>
-								<b>E-Mail:</b> {user.email}
-							</p>
-							<p>
-								<b>tel:</b> {user.phone}
-							</p>
-							<p>
-								<b>mobile:</b> {user.cell}
-							</p>
-							<FormatDate date={user.dob} type={"birth"} />
-							<FormatDate
-								date={user.registered}
-								type={"register"}
-							/>
+			<div className="user-name-and-avatar">
+				<img
+					src={user.picture.large}
+					alt={`${user.name.first}-full-size`}
+				/>
+			</div>
+			<div className="ds_contact-details">
+					<FormatName name={user.name} displayTitle={true} userDetails={true}/>
+				<address>
+					<div className="ds_contact-details-grid">
+						<div className="ds_contact-details__list">
+							<dl>
+								<FormatDate date={user.dob} type={"birth"} />
+								<div className="ds_contact-details__item">
+									<dt>Gender</dt>
+									<dd>{user.gender}</dd>
+								</div>
+								<div className="ds_contact-details__item">
+									<dt>Email</dt>
+									<dd translate="no">
+										<a href="mailto:email@gov.scot">
+											{user.email}
+										</a>
+									</dd>
+								</div>
+								<div className="ds_contact-details__item">
+									<dt>Landline</dt>
+									<dd>{user.phone}</dd>
+								</div>
+								<div className="ds_contact-details__item">
+									<dt>Mobile</dt>
+									<dd>{user.cell}</dd>
+								</div>
+							</dl>
 						</div>
-						<div className="user-detail-info-right">
-							<h3>Location Info</h3>
-							<FormatAddress
-								user={user}
-								isDetail={true}
-							/>
-							<p>
-								{user.location.timezone.offset}, (
-								{user.location.timezone.description})
-							</p>
+						<div className="ds_contact-details__list">
+							<dl>
+								<div className="ds_contact-details__item">
+									<dt>National Insurance Number</dt>
+									<dd>{user.id.value}</dd>
+								</div>
+								<div className="ds_contact-details__item">
+									<FormatAddress
+										user={user}
+										isDetail={true}
+									/>
+								</div>
+								<FormatDate
+									date={user.registered}
+									type={"register"}
+								/>
+							</dl>
 						</div>
 					</div>
-				</div>
-				<Link to="/" className="button">
+				</address>
+				<Link to="/" className="ds_button">
 					Return to User Directory
 				</Link>
 			</div>
@@ -80,3 +90,4 @@ function UserDetail({ users, updateHistory }){
 }
 
 export default UserDetail;
+

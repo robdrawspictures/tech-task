@@ -6,48 +6,21 @@ import { Link } from "react-router-dom";
 a list of Link elements for each user who has an ID matched to the array. */
 function UserHistory({history, users}){
 
-	if(!history){
-		return (
-			<div
-				className="ds_error-summary"
-				id="error-summary"
-				aria-labelledby="error-summary-title"
-				role="alert"
-			>
-				<h2 className="ds_error-summary__title" id="error-summary-title">
-					No user history available
-				</h2>
-
-				<p>It appears you have not yet browsed any users, or your previous
-					history could not be retrieved.
-
-					We apologise for any inconvenience.
-				</p>
-
-				<ul className="ds_error-summary__list">
-					<li>
-						<Link to="/">Return to User Directory</Link>
-					</li>
-				</ul>
-			</div>
-		);
-	}
-
     const recentlyViewed = history.toReversed().map((user, index) => {
-        const userURL = user && "/users/" + user;
+        const userURL = user && "/users/" + user["userId"];
 
         return (
-			<li>
+			<li key={index}>
 				<Link to={userURL}>
-					<div className="user-history-item" key={index}>
+					<div className="user-history-item">
 						<img
-							src={users[user].picture.thumbnail}
-							alt={`${users[user].name.first}-history`}
+							src={users[user["userId"]].picture.thumbnail}
+							alt={`${users[user["userId"]].name.first}-history`}
 						/>
 						<FormatName
-							name={users[user].name}
+							name={users[user["userId"]].name}
 							displayTitle={false}
-                            tag={'p'}
+							tag={"p"}
 						/>
 					</div>
 				</Link>

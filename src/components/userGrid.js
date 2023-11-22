@@ -8,25 +8,25 @@ function UserGrid({users, userHistory}){
 
     const UserList = users.map((user, index) => {
         return (
-			<li key={index}>
-				<User user={user} index={index}/>
+			<li className="ds_card  ds_card--has-hover" key={index}>
+				<User user={user} index={index} />
 			</li>
 		);
     })
 
     return (
 		<>
-			<div className="display-container">
-				<div className="user-display">
-					<ul className="user-list">{UserList}</ul>
+			<main className="ds_layout  ds_layout--article">
+				<div className="ds_layout__content">
+					<ul className="ds_category-list  ds_category-list--grid  ds_category-list--narrow">
+						{UserList}
+					</ul>
 				</div>
-				{userHistory.length > 0 && (
-					<div className="recently-viewed">
+					<div className="ds_layout__sidebar">
 						<h2>Recently Viewed</h2>
-						<UserHistory history={recentlyViewed} users={users} />
+						{userHistory.length !== 0 ? <UserHistory history={recentlyViewed} users={users} /> : <p>User history empty</p>}
 					</div>
-				)}
-			</div>
+			</main>
 		</>
 	);
 }

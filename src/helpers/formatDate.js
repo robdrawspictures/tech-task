@@ -5,12 +5,14 @@ function FormatDate({date, type}){
     let formattedDate = rawDate.toLocaleDateString();
 
     return (
-		<p>
-			<b>{type === "register" ? "Registered: " : "Date of Birth: "}</b>{" "}
-			{formattedDate} ({type === "birth" && "Age: "}
-			{date.age}
-			{type === "register" && " years"})
-		</p>
+		<div className="ds_contact-details__item">
+			<dt>{type === "register" ? "Registered" : "Date of Birth"}</dt>
+			<dd>
+				{formattedDate} ({type === "birth" && "Age: "}
+				{date.age}
+				{type === "register" && " years"})
+			</dd>
+		</div>
 	);
 }
 

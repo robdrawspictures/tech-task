@@ -5,24 +5,28 @@ function FormatAddress({user, isDetail}){
     const address = user?.location
 
     return (
-		<div className="ds_details__text">
-			<i>
-				<p>
-					{address.street.number} {address.street.name}
-				</p>
-				<p>
-					{address.city}, {address.state}
-				</p>
-				<p>{address.country}, {user.nat}</p>
-				<p>{address.postcode}</p>
-				{isDetail && (
-					<p>
-						({address.coordinates.latitude},{" "}
-						{address.coordinates.longitude})
-					</p>
-				)}
-			</i>
-		</div>
+		<>
+			<dt>Address</dt>
+			<dd translate="no">
+				{address.street.number} {address.street.name}
+				<br />
+				{address.city}, {address.state}
+				<br />
+				{address.country}, {user.nat}
+				<br />
+				{address.postcode}
+				<br />
+				{isDetail &&
+					`(${address.coordinates.latitude},${" "}
+						${address.coordinates.longitude})`
+				}
+				{isDetail && <br />}
+				{isDetail &&
+					`${address.timezone.offset},${" "}
+						(${address.timezone.description})`
+				}
+			</dd>
+		</>
 	);
 }
 
