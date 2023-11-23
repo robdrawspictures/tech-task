@@ -1,5 +1,4 @@
 import React from "react";
-import FormatName from "../helpers/formatName";
 import { Link } from "react-router-dom";
 
 /* Receives an array of user IDs, and an array of user objects, returning
@@ -8,28 +7,26 @@ function UserHistory({history, users}){
 
     const recentlyViewed = history.toReversed().map((user, index) => {
         const userURL = user && "/users/" + user["userId"];
+		const userName = users[user["userId"]].name;
+		const formattedUser = userName.first + ' ' + userName.last;
 
         return (
-			<li key={index}>
+			<li className="ds_category-item" key={index}>
 				<Link to={userURL}>
-					<div className="user-history-item">
-						<img
-							src={users[user["userId"]].picture.thumbnail}
-							alt={`${users[user["userId"]].name.first}-history`}
-						/>
-						<FormatName
-							name={users[user["userId"]].name}
-							displayTitle={false}
-							tag={"p"}
-						/>
-					</div>
+							<img
+								src={users[user["userId"]].picture.thumbnail}
+								alt={`${
+									users[user["userId"]].name.first
+								}-history`}
+							/>
+							<p>{formattedUser}</p>
 				</Link>
 			</li>
 		);
     })
 
     return (
-        <ul>{recentlyViewed}</ul>
+        <ul className="ds_category-list">{recentlyViewed}</ul>
     )
 
 }

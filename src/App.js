@@ -4,9 +4,10 @@ import axios from 'axios';
 import UserGrid from './components/userGrid';
 import UserDetail from './components/userDetail';
 import Header from './components/header';
-// import './App.css';
+import './App.css';
 import '../node_modules/@scottish-government/design-system/dist/css/design-system.css'
 import UserHistoryDetail from './components/userHistoryDetail';
+import NotFound from './components/notFound';
 import Footer from './components/footer';
 
 function App() {
@@ -27,8 +28,8 @@ function App() {
 		fetchUsers();
 	}, []);
 
-	let lastViewed;
 	let userHistory = [];
+	let lastViewed = [];
 
 	/* Handles updating of userHistory array (line 26), triggered in userDetail component.
 	To prevent clutter, the list will reset every time it reaches 10 results. */
@@ -36,17 +37,21 @@ function App() {
 		if(userHistory.length === 10){
 			userHistory.length = 0;
 			userHistory.push(data);
+
+			lastViewed.length = 0;
+			lastViewed.push(data["userId"]);
+
+			console.log('APP: ' + lastViewed);
+
 		} else{
 			userHistory.push(data);
+
+			lastViewed.length = 0;
+			lastViewed.push(data["userId"]);
+
+			console.log("APP: " + lastViewed);
 		}
 	};
-
-	const setLastViewed = (data) => {
-		console.log(data);
-		lastViewed = data;
-	} 
-
-	console.log('LAST VIEWED: ' + lastViewed);
 
 	let sortedData = data && data.sort(function (a, b) {
 	  return a.name.first.localeCompare(b.name.first);
@@ -88,7 +93,6 @@ function App() {
 							<UserDetail
 								users={sortedData}
 								updateHistory={updateHistory}
-								setLastViewed={setLastViewed}
 							/>
 						}
 					/>
@@ -99,6 +103,12 @@ function App() {
 								users={sortedData}
 								history={userHistory}
 							/>
+						}
+					/>
+					<Route
+						path="/*"
+						element={
+							<NotFound />
 						}
 					/>
 				</Routes>

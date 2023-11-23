@@ -4,7 +4,7 @@ import FormatName from "../helpers/formatName";
 import FormatAddress from "../helpers/formatAddress";
 import FormatDate from "../helpers/formatDate";
 
-function UserDetail({ users, updateHistory, setLastViewed }){
+function UserDetail({ users, updateHistory }){
 
     const params = useParams();
 	const currentUser = {
@@ -15,7 +15,6 @@ function UserDetail({ users, updateHistory, setLastViewed }){
 	// console.log(params.id)
 	// console.log(typeof(params.id))
 
-	setLastViewed(params.id);
     updateHistory(currentUser);
 
     let user = users[params.id]

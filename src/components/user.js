@@ -9,63 +9,57 @@ const User = ({ user, index }) => {
 
 	return (
 		<>
-			<div className="user-card">
-				<div className="user-card-info">
+			<div className="ds_card__media">
+				<div className="ds_aspect-box">
+					<img
+						alt={user.name.first}
+						aria-hidden="true"
+						className="ds_aspect-box__inner"
+						src={user.picture.large}
+					/>
+				</div>
+			</div>
+			<article className="ds_category-item  ds_card__content">
+				<div className="ds_contact-details">
 					<FormatName
 						name={user.name}
-						displayTitle="false"
+						displayTitle={false}
+						userDetails={true}
 						url={userURL}
 					/>
-					<div className="ds_card__media">
-						<div className="ds_aspect-box">
-							<img
-								alt={user.name.first}
-								aria-hidden="true"
-								className="ds_aspect-box__inner"
-								src={user.picture.large}
-							/>
-						</div>
-					</div>
-					<div className="user-card-details">
-						<div className="ds_contact-details">
-							<h2 className="ds_contact-details__title">
-								Contact
-							</h2>
-							<address>
-								<dl>
-									<div className="ds_contact-details__item">
-										<dt>Email</dt>
-										<dd translate="no">
-											<a href={`mailto:${user.email}`}>
-												{user.email}
-											</a>
-										</dd>
-									</div>
-									<div className="ds_contact-details__item">
-										<dt>Phone</dt>
-										<dd>{user.phone}</dd>
-									</div>
-									<div className="ds_contact-details__item">
-										<dt>National Insurance number</dt>
-										<dd>{user.id.value}</dd>
-									</div>
-								</dl>
-							</address>
-						</div>
-						<details className="ds_details">
-							<summary className="ds_details__summary">
-								View Address
-							</summary>
-							<div className="ds_details__text">
-								<FormatAddress user={user} isDetail={false} />
+					<address>
+						<dl>
+							<div className="ds_contact-details__item">
+								<dt>Email</dt>
+								<dd translate="no">
+									<a href={`mailto:${user.email}`}>
+										{user.email}
+									</a>
+								</dd>
 							</div>
-						</details>
-					</div>
+							<div className="ds_contact-details__item">
+								<dt>Phone</dt>
+								<dd>{user.phone}</dd>
+							</div>
+							<div className="ds_contact-details__item">
+								<dt>National Insurance number</dt>
+								<dd>{user.id.value}</dd>
+							</div>
+						</dl>
+					</address>
 				</div>
+				<details className="ds_details">
+					<summary className="ds_details__summary">
+						View Address
+					</summary>
+					<div className="ds_details__text">
+						<FormatAddress user={user} isDetail={false} />
+					</div>
+				</details>
 				<Link to={userURL} className="ds_button">
-					View Details
+					View User
 				</Link>
-			</div>
+			</article>
 		</>
 	);
 };

@@ -1,12 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import headerIMG from "../assets/scottish-government.svg";
-import { useContext } from "react";
-import LastViewed from "../helpers/userContext";
 
-function Header(){
+function Header({lastViewed}){
 
-    let lastViewed = useContext(LastViewed);
+    console.log('HEADER: ' + lastViewed);
 
     let lastURL = '/users/' + lastViewed;
 
@@ -87,16 +85,15 @@ function Header(){
 									User History
 								</Link>
 							</li>
-                            { lastViewed &&
 							<li className="ds_site-navigation__item">
 								<Link
+									key={lastViewed}
 									to={lastURL}
 									className="ds_site-navigation__link"
 								>
 									Last User Viewed
 								</Link>
 							</li>
-                            }
 						</ul>
 					</nav>
 
@@ -164,16 +161,15 @@ function Header(){
 									User History
 								</Link>
 							</li>
-                            { lastViewed &&
 							<li className="ds_site-navigation__item">
 								<Link
+									key={lastViewed}
 									to={lastURL}
 									className="ds_site-navigation__link"
 								>
 									Last User Viewed
 								</Link>
 							</li>
-                            }
 						</ul>
 					</nav>
 				</div>
