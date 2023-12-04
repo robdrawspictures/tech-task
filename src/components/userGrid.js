@@ -18,18 +18,18 @@ function UserGrid({users, userHistory}){
 
     return (
 		<>
-			<header class="ds_page-header">
-				<span class="ds_page-header__label  ds_content-label">
+			<header className="ds_page-header">
+				<span className="ds_page-header__label  ds_content-label">
 					User Directory
 				</span>
-				<h1 class="ds_page-header__title">
+				<h1 className="ds_page-header__title">
 					All Users
 				</h1>
 
-				<dl class="ds_page-header__metadata  ds_metadata">
-					<div class="ds_metadata__item">
-						<dt class="ds_metadata__key">Last updated</dt>
-						<dd class="ds_metadata__value">{lastUpdated}</dd>
+				<dl className="ds_page-header__metadata  ds_metadata">
+					<div className="ds_metadata__item">
+						<dt className="ds_metadata__key">Last updated</dt>
+						<dd className="ds_metadata__value">{lastUpdated}</dd>
 					</div>
 				</dl>
 			</header>

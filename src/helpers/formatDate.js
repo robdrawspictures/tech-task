@@ -1,8 +1,11 @@
 import React from "react";
 
 function FormatDate({date, type}){
+
     let rawDate = new Date(date.date);
-    let formattedDate = rawDate.toLocaleDateString();
+	/* Note: en-GB is specificed because in testing Jest was rendering US 
+	date formatting for some reason. */
+    let formattedDate = rawDate.toLocaleDateString("en-GB");
 
     return (
 		<div className="ds_contact-details__item">
